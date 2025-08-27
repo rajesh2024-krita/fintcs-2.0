@@ -16,6 +16,11 @@ import { CommonModule } from '@angular/common';
           </div>
           
           <div class="bg-white shadow rounded-lg p-6">
+            <div class="mb-4">
+              <button class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-md text-sm font-medium">
+                Add New Member
+              </button>
+            </div>
             <p class="text-gray-500">Member management interface will be implemented here.</p>
           </div>
         </div>

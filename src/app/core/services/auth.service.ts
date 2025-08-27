@@ -9,7 +9,7 @@ import { User, UserRole, LoginRequest, LoginResponse } from '../../shared/models
   providedIn: 'root'
 })
 export class AuthService {
-  private readonly apiUrl = 'http://localhost:5000/api';
+  private readonly apiUrl = 'http://0.0.0.0:5000/api/auth';
   private currentUserSubject = new BehaviorSubject<User | null>(null);
   public currentUser$ = this.currentUserSubject.asObservable();
 
@@ -18,7 +18,7 @@ export class AuthService {
   }
 
   login(credentials: LoginRequest): Observable<LoginResponse> {
-    return this.http.post<LoginResponse>(`${this.apiUrl}/auth/login`, credentials).pipe(
+    return this.http.post<LoginResponse>(`${this.apiUrl}/login`, credentials).pipe(
       tap(response => {
         localStorage.setItem('token', response.token);
         localStorage.setItem('user', JSON.stringify(response.user));
@@ -48,19 +48,19 @@ export class AuthService {
 
   getUsers(societyId?: string): Observable<User[]> {
     const params = societyId ? `?societyId=${societyId}` : '';
-    return this.http.get<User[]>(`${this.apiUrl}/auth/users${params}`);
+    return this.http.get<User[]>(`${this.apiUrl}/users${params}`);
   }
 
   createUser(user: any): Observable<User> {
-    return this.http.post<User>(`${this.apiUrl}/auth/users`, user);
+    return this.http.post<User>(`${this.apiUrl}/users`, user);
   }
 
   updateUser(id: string, user: any): Observable<User> {
-    return this.http.put<User>(`${this.apiUrl}/auth/users/${id}`, user);
+    return this.http.put<User>(`${this.apiUrl}/users/${id}`, user);
   }
 
   deleteUser(id: string): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/auth/users/${id}`);
+    return this.http.delete<void>(`${this.apiUrl}/users/${id}`);
   }
 
   private loadStoredUser(): void {

@@ -1,4 +1,3 @@
-
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -22,7 +21,7 @@ import { UserRole } from '../../shared/models/user.model';
             Finance Management System
           </p>
         </div>
-        
+
         <form class="mt-8 space-y-6" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
           <div class="rounded-md shadow-sm space-y-4">
             <div>
@@ -36,12 +35,12 @@ import { UserRole } from '../../shared/models/user.model';
                 class="form-input mt-1"
                 placeholder="Enter your username"
               />
-              <div *ngIf="loginForm.get('username')?.invalid && loginForm.get('username')?.touched" 
+              <div *ngIf="loginForm.get('username')?.invalid && loginForm.get('username')?.touched"
                    class="text-red-500 text-sm mt-1">
                 Username is required
               </div>
             </div>
-            
+
             <div>
               <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
               <input
@@ -53,7 +52,7 @@ import { UserRole } from '../../shared/models/user.model';
                 class="form-input mt-1"
                 placeholder="Enter your password"
               />
-              <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" 
+              <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched"
                    class="text-red-500 text-sm mt-1">
                 Password is required
               </div>
@@ -74,7 +73,7 @@ import { UserRole } from '../../shared/models/user.model';
               <span *ngIf="!isLoading">Sign in</span>
             </button>
           </div>
-          
+
           <div class="text-center text-sm text-gray-600">
             <p>Default Super Admin:</p>
             <p>Username: admin | Password: admin</p>

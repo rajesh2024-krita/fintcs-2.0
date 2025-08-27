@@ -12,10 +12,15 @@ import { CommonModule } from '@angular/common';
         <div class="px-4 py-6 sm:px-0">
           <div class="mb-6">
             <h1 class="text-2xl font-bold text-gray-900">Voucher Management</h1>
-            <p class="text-gray-600">Create and manage financial vouchers</p>
+            <p class="text-gray-600">Manage accounting vouchers and transactions</p>
           </div>
           
           <div class="bg-white shadow rounded-lg p-6">
+            <div class="mb-4">
+              <button class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-md text-sm font-medium">
+                Create New Voucher
+              </button>
+            </div>
             <p class="text-gray-500">Voucher management interface will be implemented here.</p>
           </div>
         </div>
