@@ -119,7 +119,7 @@ import { User, UserRole } from '../../shared/models/user.model';
               <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
 
                 <!-- Super Admin Actions -->
-                <ng-container *ngIf="isSuperAdmin()">
+                <ng-container *ngIf="isSuperAdmin">
                   <button
                     (click)="navigateTo('/societies')"
                     class="p-4 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors text-left"
@@ -138,7 +138,7 @@ import { User, UserRole } from '../../shared/models/user.model';
                 </ng-container>
 
                 <!-- Society Admin Actions -->
-                <ng-container *ngIf="isSocietyAdmin()">
+                <ng-container *ngIf="isSocietyAdmin">
                   <button
                     (click)="navigateTo('/members')"
                     class="p-4 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors text-left"
@@ -194,7 +194,8 @@ export class DashboardComponent implements OnInit {
     totalSocieties: 0,
     totalUsers: 0,
     totalMembers: 0,
-    totalLoans: 0
+    totalLoans: 0,
+    activeLoans: 0
   };
 
   constructor(
@@ -215,7 +216,8 @@ export class DashboardComponent implements OnInit {
         totalSocieties: 3,
         totalUsers: 12,
         totalMembers: 85,
-        totalLoans: 23
+        totalLoans: 23,
+        activeLoans: 18
       };
     }
   }
