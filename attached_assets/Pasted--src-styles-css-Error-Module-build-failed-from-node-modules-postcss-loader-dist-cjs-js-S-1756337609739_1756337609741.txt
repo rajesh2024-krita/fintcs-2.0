@@ -1,0 +1,66 @@
+./src/styles.css - Error: Module build failed (from ./node_modules/postcss-loader/dist/cjs.js):
+
+SyntaxError
+
+(7:3) C:\Rajesh\Angular\FinTCS\fintcs-new\fintcs-2.0\src\styles.css @apply should not be used with the 'group' utility        
+
+  5 | /* Custom styles */
+  6 | .btn-primary {
+> 7 |   @apply group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50;
+    |   ^
+  8 | }
+  9 | 
+
+
+./src/styles.css?ngGlobalStyle - Error: Module build failed (from ./node_modules/mini-css-extract-plugin/dist/loader.js):     
+HookWebpackError: Module build failed (from ./node_modules/postcss-loader/dist/cjs.js):
+
+SyntaxError
+
+(7:3) C:\Rajesh\Angular\FinTCS\fintcs-new\fintcs-2.0\src\styles.css @apply should not be used with the 'group' utility        
+
+  5 | /* Custom styles */
+  6 | .btn-primary {
+> 7 |   @apply group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50;
+    |   ^
+  8 | }
+  9 | 
+
+Error: src/app/core/guards/role.guard.ts:17:21 - error TS2551: Property 'hasAnyRole' does not exist on type 'AuthService'. Did you mean 'hasRole'?
+
+17     if (authService.hasAnyRole(allowedRoles)) {
+                       ~~~~~~~~~~
+
+  src/app/core/services/auth.service.ts:44:3
+    44   hasRole(roles: UserRole[]): boolean {
+         ~~~~~~~
+    'hasRole' is declared here.
+
+
+Error: src/app/core/interceptors/token.interceptor.ts:8:29 - error TS2339: Property 'getToken' does not exist on type 'AuthService'.
+
+8   const token = authService.getToken();
+                              ~~~~~~~~
+
+
+Error: src/app/features/dashboard/dashboard.component.ts:107:87 - error TS2339: Property 'activeLoans' does not exist on type '{ totalSocieties: number; totalUsers: number; totalMembers: number; totalLoans: number; }'.
+
+107                       <dd class="text-lg font-medium text-gray-900">{{ dashboardStats.activeLoans }}</dd>
+                                                                                          ~~~~~~~~~~~
+
+
+Error: src/app/features/dashboard/dashboard.component.ts:224:37 - error TS2345: Argument of type 'import("C:/Rajesh/Angular/FinTCS/fintcs-new/fintcs-2.0/src/app/shared/models/user.model").UserRole' is not assignable to parameter of type 'UserRole[]'.  
+
+224     return this.authService.hasRole(UserRole.SuperAdmin);
+                                        ~~~~~~~~~~~~~~~~~~~
+
+
+Error: src/app/features/dashboard/dashboard.component.ts:228:37 - error TS2345: Argument of type 'import("C:/Rajesh/Angular/FinTCS/fintcs-new/fintcs-2.0/src/app/shared/models/user.model").UserRole' is not assignable to parameter of type 'UserRole[]'.  
+
+228     return this.authService.hasRole(UserRole.SocietyAdmin);
+                                        ~~~~~~~~~~~~~~~~~~~~~
+
+
+
+
+× Failed to compile.
