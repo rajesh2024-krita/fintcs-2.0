@@ -1,0 +1,329 @@
+1. PROJECT OVERVIEW
+
+Develop a Finance Management System named Fintcs, supporting multiple roles, advanced data handling, dynamic forms, and robust reporting.
+
+Tech Stack
+
+Frontend: Angular v18 (Standalone APIs, Routing, Http Interceptor) + Tailwind CSS
+
+Backend: ASP.Net Core Web API (C#)
+
+Database: SQL Server (Database Name: Fintcs, hosted on localhost)
+
+2. CORE REQUIREMENTS
+Roles
+
+Super Admin
+
+Society Admin
+
+User
+
+Member
+
+Authentication & Authorization
+
+JWT-based token authentication.
+
+Passwords stored with secure hashing (PBKDF2 or BCrypt).
+
+Seeded Super Admin:
+
+Username: admin
+
+Password: admin
+
+Role-based routing in Angular and [Authorize(Roles="...")] in ASP.Net Core.
+
+3. FRONTEND (ANGULAR + TAILWIND CSS)
+3.1 General UI & Architecture
+
+Configure Tailwind CSS in Angular (tailwind.config.js, postcss config, styles.css).
+
+All UI components are responsive, styled with Tailwind utility classes only.
+
+Project Structure:
+
+/src/app/
+  core/       (auth.service.ts, token.interceptor.ts, role.guard.ts)
+  shared/     (models, utils, validators, components)
+  features/
+    auth/
+    dashboard/
+    societies/
+    users/
+    members/
+    loans/
+    demand/
+    vouchers/
+  app.routes.ts
+
+
+Shared UI Components:
+
+Reusable dropdowns, tables (sortable, filterable, paginated), date pickers.
+
+File upload (Photo, Signature).
+
+Toast notifications for success/error.
+
+3.2 MODULES & SCREENS
+3.2.1 Login & Dashboard
+
+Login: Token-based authentication, form validation, error handling.
+
+Dashboard:
+
+Super Admin → System overview, societies, and user stats.
+
+Society Admin → Society-level data, pending approvals.
+
+User → Read-only access to society details.
+
+Member → Profile, loan history, savings summary.
+
+3.2.2 Society Management
+
+Super Admin:
+
+Create societies, assign Society Admins.
+
+Manage users & members globally.
+
+Society Admin:
+
+Edit own society (edits → Pending approval).
+
+Manage Users & Members in own society.
+
+Society Fields:
+
+Name, Address, City, Phone, Fax, Email, Website, Registration No.
+
+Tabs:
+
+Interest: Dividend, OD, CD, Loan, EmergencyLoan, LAS.
+
+Limit: Share, Loan, Emergency Loan.
+
+Ch Bounce Charge: Amount + Mode (Excess Provision, Cash, HDFC Bank, Inverter).
+
+3.2.3 User Management
+
+Fields:
+
+EDP No, Name, Address(O), Address(R), Designation, Phone(O), Phone(R), Mobile, Email, Username, Password, Confirm Password.
+
+Validations:
+
+Password rules, unique username, required fields.
+
+3.2.4 Member Management
+
+Auto-generate Mem No: MEM_001, MEM_002, etc.
+
+Fields:
+
+Name, Father/Husband Name, Address (Office/Residence), City, Phones, Mobile, Designation.
+
+DOB, DOJ Society, DOJ (Org), DOR.
+
+Nominee & Nominee Relation.
+
+Opening Balance (Share) + Value.
+
+Dropdown: Cr / Dr / CD.
+
+Bank Details: Bank Name, Payable At, Account No.
+
+Status: Active / Deactive.
+
+Multi-select deductions: Share, Withdrawal, G Loan Installment, E Loan Installment.
+
+Upload Photo & Signature.
+
+Rules:
+
+Super Admin → Any society.
+
+Society Admin → Own society only.
+
+3.2.5 Loan Entry Form
+
+Fields:
+
+Loan Type (Dropdown).
+
+Loan No. (Auto + New + Search).
+
+Loan Date (Default: Current date).
+
+EDP No., Name.
+
+Loan Amount, Previous Loan (Remaining), Net Loan (Auto: Loan Amount – Previous Loan).
+
+Installments & Installment Amount.
+
+Purpose (Multiline), Authorized By.
+
+Payment Mode: Radio Buttons (Cash, Cheque, Opening).
+
+Bank (Dropdown), Cheque No., Cheque Date.
+
+Share, CD, Last Salary, MWF, Pay Amount.
+
+Tables:
+
+Given: MemNo, Name.
+
+Taken: MemNo, Name.
+
+Buttons: Validate, Save, Close, Clear.
+
+Behavior:
+
+Validate numeric & date fields.
+
+Auto-calc Net Loan.
+
+Save enabled only after Validate.
+
+3.2.6 Monthly Demand Processing
+
+Fields:
+
+Month (Dropdown), Year (Dropdown: 2000–2050), New (Create new record).
+
+Tabs:
+
+Demand Table:
+
+Columns: EDP No, Member Name, Loan Amt, CD, Loan, Interest, E-Loan, Interest..., Net..., IntDue, PInt, P Ded, LAS, Int, LASIntDue.
+
+Totals: Member count, Total Amount (Auto).
+
+Member Section:
+
+Displays selected member’s financial data dynamically.
+
+Buttons:
+
+Excel Export, Print, Print Loan, Save, Clear, Reset, Close.
+
+3.2.7 Voucher Creation
+
+Fields:
+
+Voucher Type (Dropdown: Payment, Receipt, Journal, Contra, Adjustment, Others).
+
+Voucher No. (Auto + Search).
+
+Date (Default: Today).
+
+Table Section:
+
+Particulars, Debit, Credit.
+
+Entry Section:
+
+Db/Cr, Particulars, Ibldbc.
+
+Totals:
+
+Auto-calc Debit & Credit.
+
+Validation: Debit == Credit before Save.
+
+Buttons:
+
+Reverse, Save, Print, Delete, New, Close.
+
+3.2.8 Loan Report Screen
+
+Main Table Columns:
+
+EDP No, Name, Amount, Loan Date, Principal, Interest, Penal, Total, Dt Last Pay.
+
+Right-side Actions:
+
+Defaulter's List, Excess Loan Over Limit, Excess Recovered (G/E Loan), Print, Close.
+
+Features:
+
+Sorting & Filtering.
+
+Export to Excel/PDF.
+
+4. BACKEND (ASP.Net Core Web API)
+4.1 Architecture
+
+Layers:
+
+Controllers → Services → Repositories → EF Core.
+
+Tools:
+
+AutoMapper for DTO mapping.
+
+FluentValidation or DataAnnotations for validation.
+
+Global exception handling & structured problem responses.
+
+4.2 APIs
+
+Auth: Login → JWT with Role Claims.
+
+Societies: CRUD + Approval Workflow.
+
+Users: CRUD with role restrictions.
+
+Members: CRUD with auto Mem No.
+
+Loans: CRUD with Loan No. generation.
+
+Monthly Demand: CRUD, Totals, Export, Print.
+
+Vouchers: CRUD, Balance validation, Reverse, Print.
+
+Reports: Filtered reports, exportable to Excel/PDF.
+
+4.3 Security
+
+[Authorize] with Role Claims.
+
+Hash passwords securely.
+
+Protect sensitive endpoints.
+
+5. DATABASE (SQL SERVER)
+5.1 Schema
+
+Core Tables:
+
+SuperAdmins, Societies, AppUsers, Members, Loans, MonthlyDemandHeader, MonthlyDemandRow, Vouchers, VoucherLines, PendingEdits, Lookups.
+
+Lookups:
+
+LoanTypes, Banks, VoucherTypes, Months, Years.
+
+5.2 Seed Data
+
+Super Admin: admin/admin.
+
+Loan Types, Banks, Voucher Types, Months (JAN–DEC), Years (2000–2050).
+
+6. DELIVERABLES
+
+Angular Project with Tailwind styling.
+
+ASP.Net Core Web API with EF Core & JWT Auth.
+
+SQL Server Schema & Seed Script.
+
+README:
+
+Setup steps (Angular + Backend).
+
+Apply EF migrations.
+
+Default Super Admin login.
