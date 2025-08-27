@@ -1,2 +1,18 @@
 [nix]
 channel = "stable-25_05"
+
+[workflows]
+runButton = "Run Frontend"
+
+[[workflows.workflow]]
+name = "Run Frontend"
+author = 46973122
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm install"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm start"
