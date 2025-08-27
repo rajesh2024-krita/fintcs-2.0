@@ -1,4 +1,3 @@
-
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
@@ -118,7 +117,7 @@ import { User, UserRole } from '../../shared/models/user.model';
             <div class="px-4 py-5 sm:p-6">
               <h3 class="text-lg leading-6 font-medium text-gray-900 mb-4">Quick Actions</h3>
               <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                
+
                 <!-- Super Admin Actions -->
                 <ng-container *ngIf="isSuperAdmin()">
                   <button
@@ -128,7 +127,7 @@ import { User, UserRole } from '../../shared/models/user.model';
                     <h4 class="font-medium text-gray-900">Manage Societies</h4>
                     <p class="text-sm text-gray-500 mt-1">Create and manage societies</p>
                   </button>
-                  
+
                   <button
                     (click)="navigateTo('/users')"
                     class="p-4 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors text-left"
@@ -147,7 +146,7 @@ import { User, UserRole } from '../../shared/models/user.model';
                     <h4 class="font-medium text-gray-900">Manage Members</h4>
                     <p class="text-sm text-gray-500 mt-1">Add and manage society members</p>
                   </button>
-                  
+
                   <button
                     (click)="navigateTo('/loans')"
                     class="p-4 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors text-left"
@@ -165,7 +164,7 @@ import { User, UserRole } from '../../shared/models/user.model';
                   <h4 class="font-medium text-gray-900">Monthly Demand</h4>
                   <p class="text-sm text-gray-500 mt-1">Process monthly demands</p>
                 </button>
-                
+
                 <button
                   (click)="navigateTo('/vouchers')"
                   class="p-4 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors text-left"
@@ -173,7 +172,7 @@ import { User, UserRole } from '../../shared/models/user.model';
                   <h4 class="font-medium text-gray-900">Voucher Entry</h4>
                   <p class="text-sm text-gray-500 mt-1">Create and manage vouchers</p>
                 </button>
-                
+
                 <button
                   (click)="navigateTo('/reports')"
                   class="p-4 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors text-left"
@@ -195,7 +194,7 @@ export class DashboardComponent implements OnInit {
     totalSocieties: 0,
     totalUsers: 0,
     totalMembers: 0,
-    activeLoans: 0
+    totalLoans: 0
   };
 
   constructor(
@@ -205,17 +204,20 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentUser = this.authService.getCurrentUser();
-    this.loadDashboardStats();
+    this.loadDashboardData();
   }
 
-  loadDashboardStats(): void {
-    // TODO: Implement API calls to get dashboard statistics
-    this.dashboardStats = {
-      totalSocieties: 5,
-      totalUsers: 25,
-      totalMembers: 150,
-      activeLoans: 45
-    };
+  private loadDashboardData(): void {
+    // Load dashboard statistics based on user role
+    // This is a placeholder - implement actual API calls
+    if (this.currentUser?.role === UserRole.SuperAdmin) {
+      this.dashboardStats = {
+        totalSocieties: 3,
+        totalUsers: 12,
+        totalMembers: 85,
+        totalLoans: 23
+      };
+    }
   }
 
   isSuperAdmin(): boolean {

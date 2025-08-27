@@ -16,3 +16,20 @@ args = "npm install"
 [[workflows.workflow.tasks]]
 task = "shell.exec"
 args = "npm start"
+
+[[workflows.workflow]]
+name = "Run Backend"
+author = 46973122
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "cd backend/Fintcs.Api"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "dotnet restore"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "dotnet run"
