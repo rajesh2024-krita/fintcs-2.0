@@ -220,12 +220,12 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-  isSuperAdmin(): boolean {
-    return this.authService.hasRole(UserRole.SuperAdmin);
+  get isSuperAdmin(): boolean {
+    return this.authService.hasRole([UserRole.SuperAdmin]);
   }
 
-  isSocietyAdmin(): boolean {
-    return this.authService.hasRole(UserRole.SocietyAdmin);
+  get isSocietyAdmin(): boolean {
+    return this.authService.hasRole([UserRole.SocietyAdmin]);
   }
 
   navigateTo(path: string): void {

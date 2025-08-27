@@ -41,9 +41,19 @@ export class AuthService {
     return this.currentUserSubject.value;
   }
 
-  hasRole(roles: UserRole[]): boolean {
-    const currentUser = this.getCurrentUser();
-    return currentUser ? roles.includes(currentUser.role) : false;
+  hasRole(roles: UserRole | UserRole[]): boolean {
+    const user = this.getCurrentUser();
+    if (!user) return false;
+    const roleArray = Array.isArray(roles) ? roles : [roles];
+    return roleArray.includes(user.role);
+  }
+
+  hasAnyRole(roles: UserRole[]): boolean {
+    return this.hasRole(roles);
+  }
+
+  getToken(): string | null {
+    return localStorage.getItem('token');
   }
 
   getUsers(societyId?: string): Observable<User[]> {
