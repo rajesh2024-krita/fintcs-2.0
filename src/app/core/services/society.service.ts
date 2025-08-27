@@ -8,7 +8,7 @@ import { Society, CreateSocietyRequest } from '../../shared/models/society.model
   providedIn: 'root'
 })
 export class SocietyService {
-  private readonly apiUrl = 'http://0.0.0.0:5000/api/societies';
+  private readonly apiUrl = 'http://localhost:5000/api/societies';
 
   constructor(private http: HttpClient) {}
 

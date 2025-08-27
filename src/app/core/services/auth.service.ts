@@ -9,7 +9,7 @@ import { User, UserRole, LoginRequest, LoginResponse } from '../../shared/models
   providedIn: 'root'
 })
 export class AuthService {
-  private readonly apiUrl = 'http://0.0.0.0:5000/api/auth';
+  private readonly apiUrl = 'http://localhost:5000/api/auth';
   private currentUserSubject = new BehaviorSubject<User | null>(null);
   public currentUser$ = this.currentUserSubject.asObservable();
 
