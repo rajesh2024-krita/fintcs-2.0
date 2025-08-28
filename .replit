@@ -1,3 +1,5 @@
+run = "npm run watch"
+modules = ["nodejs-20", "dotnet-7.0", "web"]
 [nix]
 channel = "stable-25_05"
 
@@ -41,3 +43,6 @@ args = "dotnet run --urls=http://0.0.0.0:5000"
 [[ports]]
 localPort = 4200
 externalPort = 80
+
+[deployment]
+run = ["sh", "-c", "npm run watch"]
