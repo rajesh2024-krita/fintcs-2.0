@@ -32,4 +32,8 @@ args = "dotnet restore"
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"
-args = "dotnet run"
+args = "dotnet ef database update"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "dotnet run --urls=http://0.0.0.0:5000"
