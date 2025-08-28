@@ -37,3 +37,7 @@ args = "dotnet ef database update"
 [[workflows.workflow.tasks]]
 task = "shell.exec"
 args = "dotnet run --urls=http://0.0.0.0:5000"
+
+[[ports]]
+localPort = 4200
+externalPort = 80
